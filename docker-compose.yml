@@ -1,0 +1,10 @@
+version: '2'
+services:
+  dynamoDB:
+    image: amazon/dynamodb-local
+    environment:
+      - AWS_ACCESS_KEY_ID=dummy
+      - AWS_SECRET_ACCESS_KEY=dummy
+    ports:
+      - 8000:8000
+    command: ["-jar", "DynamoDBLocal.jar", "-sharedDb", "-inMemory"]

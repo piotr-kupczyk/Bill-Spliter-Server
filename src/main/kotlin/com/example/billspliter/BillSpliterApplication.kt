@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class BillSpliterApplication
 
 fun main(args: Array<String>) {
-	runApplication<BillSpliterApplication>(*args)
+    runApplication<BillSpliterApplication>(*args)
 }

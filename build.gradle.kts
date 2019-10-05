@@ -10,16 +10,28 @@ plugins {
 group = "com.example"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
-
 repositories {
 	mavenCentral()
 }
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter")
-	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+	// Tests
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	// Spring web
+	implementation(Dependencies.springWeb)
+	implementation(Dependencies.springWebStarter)
+
+	// Spring data + DynomoDB
+	implementation(Dependencies.springData)
+	implementation(Dependencies.dynamoDB)
+	implementation(Dependencies.sprindDynamoDB)
+
+	// Kotlin
+	implementation(Dependencies.kotlinReflect)
+	implementation(Dependencies.kotlin)
+
+	// Jackson
+	implementation(Dependencies.jacksonKotlin)
 }
 
 tasks.withType<KotlinCompile> {
