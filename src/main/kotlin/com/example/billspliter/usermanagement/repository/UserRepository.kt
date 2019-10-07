@@ -6,5 +6,7 @@ import org.springframework.data.repository.CrudRepository
 import java.util.*
 
 @EnableScan
-interface UserRepository: CrudRepository<UserDAO, String>
+interface UserRepository: CrudRepository<UserDAO, String> {
+    override fun findAllById(ids: Iterable<String>): List<UserDAO>
+}
 

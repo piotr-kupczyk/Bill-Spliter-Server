@@ -10,7 +10,3 @@ spring:
         gsiProjectionType: ALL
         readCapacity: 10
         writeCapacity: 1
-
-
-
-

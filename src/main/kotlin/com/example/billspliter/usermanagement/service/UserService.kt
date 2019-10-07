@@ -18,6 +18,8 @@ class UserService(
         return userRepository.findAll().toList()
     }
 
+    fun getUsersByIds(ids: List<String>): List<UserDAO> = userRepository.findAllById(ids)
+
     fun getUserFriends(userId: String): List<UserDAO> =
             userRepository.findByIdOrNull(userId)?.friends ?: listOf(UserDAO()) // TODO throw NotFound
 
@@ -39,4 +41,6 @@ class UserService(
         userRepository.deleteById(userId)
         log.info("Removed user: $userId")
     }
+
+
 }

@@ -1,6 +1,10 @@
 package com.example.billspliter.usermanagement
 
 import com.amazonaws.services.dynamodbv2.datamodeling.*
+import com.amazonaws.util.json.Jackson
+import com.example.billspliter.groupmanagement.GroupDAO
+import com.fasterxml.jackson.databind.DeserializationContext
+import com.fasterxml.jackson.databind.KeyDeserializer
 
 //data class DynamoId(
 //        @DynamoDBHashKey
@@ -15,6 +19,8 @@ data class UserDAO(
         var id: String? = null,
         @DynamoDBAttribute
         var name: String = "",
+        @DynamoDBAttribute
+        var groups: MutableList<GroupDAO> = mutableListOf(),
         @DynamoDBAttribute
         var friends: MutableList<UserDAO> = mutableListOf()
 )
