@@ -4,6 +4,8 @@ import com.amazonaws.services.dynamodbv2.datamodeling.*
 import com.example.billspliter.usermanagement.Spend
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
+import java.sql.Date
+import java.sql.Timestamp
 
 @DynamoDBTable(tableName = "groups")
 data class GroupDAO(
@@ -23,7 +25,14 @@ data class GroupDAO(
 
 data class MemberHistory(
         var userId: String = "",
-        var spends: MutableList<String> = mutableListOf()
+        var spends: MutableList<SpendDAO> = mutableListOf()
+)
+
+data class SpendDAO(
+        val title: String,
+        val date: Timestamp,
+        val value: Double,
+        val imageURL: String
 )
 
 

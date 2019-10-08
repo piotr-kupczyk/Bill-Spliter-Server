@@ -1,7 +1,9 @@
 package com.example.billspliter.groupmanagement.controller
 
 import com.example.billspliter.groupmanagement.GroupDAO
+import com.example.billspliter.groupmanagement.SpendDAO
 import com.example.billspliter.groupmanagement.httpmodel.GroupRequest
+import com.example.billspliter.groupmanagement.httpmodel.SpendRequest
 import com.example.billspliter.groupmanagement.service.GroupService
 import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
@@ -25,5 +27,14 @@ class GroupController(
     fun createGroup(@RequestBody group: GroupRequest): ResponseEntity<GroupDAO> {
         log.info("POST request. Creating ")
         return ResponseEntity.ok(groupService.createGroup(group))
+    }
+
+    @PutMapping
+    fun addSpend(
+            @RequestParam groupId: String,
+            @RequestBody spendRequest: SpendRequest
+    ): ResponseEntity<SpendDAO> {
+        log.info("PUT request. Adding new spendRequest ")
+        return ResponseEntity.ok(groupService.addSpend(groupId, spendRequest ))
     }
 }

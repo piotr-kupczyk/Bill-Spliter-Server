@@ -20,6 +20,8 @@ class UserService(
 
     fun getUsersByIds(ids: List<String>): List<UserDAO> = userRepository.findAllById(ids)
 
+    fun getUserById(id: String): UserDAO? = userRepository.findByIdOrNull(id)
+
     fun getUserFriends(userId: String): List<UserDAO> =
             userRepository.findByIdOrNull(userId)?.friends ?: listOf(UserDAO()) // TODO throw NotFound
 
