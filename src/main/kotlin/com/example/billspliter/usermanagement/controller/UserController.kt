@@ -21,6 +21,12 @@ class UserController(
         return ResponseEntity.ok(service.getUsers())
     }
 
+    @GetMapping("{userId}")
+    fun getUserById(@PathVariable userId: String): ResponseEntity<UserDAO> {
+        log.info("GET request for user [$userId]")
+        return ResponseEntity.ok(service.getUserById(userId))
+    }
+
     @GetMapping("/friend")
     fun getUserFriends(@RequestParam userId: String): ResponseEntity<List<UserDAO>> {
         log.info("GET request for friends")

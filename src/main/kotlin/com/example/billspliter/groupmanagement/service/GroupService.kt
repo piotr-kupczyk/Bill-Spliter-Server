@@ -6,15 +6,12 @@ import com.example.billspliter.groupmanagement.SpendDAO
 import com.example.billspliter.groupmanagement.httpmodel.GroupRequest
 import com.example.billspliter.groupmanagement.httpmodel.SpendRequest
 import com.example.billspliter.groupmanagement.repository.GroupRepository
-import com.example.billspliter.usermanagement.Spend
 import com.example.billspliter.usermanagement.service.UserService
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
 import org.springframework.web.server.ResponseStatusException
-import java.net.URLEncoder
 import java.sql.Timestamp
-import java.util.*
 
 @Service
 class GroupService(
@@ -43,17 +40,17 @@ class GroupService(
 
     fun addSpend(groupId: String, spendRequest: SpendRequest): SpendDAO =
             repository.findByIdOrNull(groupId)?.let { group ->
-                val user = userService.getUserById(spendRequest.payer)?.takeIf { user -> user.groups.any { it.id == groupId } } ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "User [${spendRequest.payer}] doesn't belong to group: [$groupId]")
+                val user = userService.getUserById(spendRequest.payerId)
                 val spend = spendRequest.toSpendDAO(user.name)
-                group.members.find { it.userId == user.id }!!.spends.add(spend)
+                group.members.find { it.userId == user.id }?.spends?.add(spend) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "User [${user.id}] doesn't belong to group [$groupId]")
                 repository.save(group)
                 spend
             } ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "Couldn't find group with id: [$groupId]")
 }
 
 fun SpendRequest.toSpendDAO(userName: String): SpendDAO {
-    val imageURL = "https://ui-avatars.com/api/?name=$userName&size=64&color=FFFFF&background=007AFF"
-    val encodedURL = URLEncoder.encode(imageURL, "UTF-8")
-            .replace(' ', '+')
-    return SpendDAO(title, Timestamp(date), value, encodedURL)
+    return SpendDAO(title, date, value, userName.generateImageURLForName(), userName, concerns)
 }
+
+fun String.generateImageURLForName(): String = "https://ui-avatars.com/api/?name=$this&size=64&color=FFFFF&background=007AFF".replace(' ', '+')
+

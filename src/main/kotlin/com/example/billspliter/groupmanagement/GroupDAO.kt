@@ -30,9 +30,11 @@ data class MemberHistory(
 
 data class SpendDAO(
         val title: String,
-        val date: Timestamp,
+        val date: Long,
         val value: Double,
-        val imageURL: String
+        val imageURL: String,
+        val userName: String,
+        val concerns: List<String>
 )
 
 

@@ -20,6 +20,8 @@ data class UserDAO(
         @DynamoDBAttribute
         var name: String = "",
         @DynamoDBAttribute
+        var imageURL: String = "",
+        @DynamoDBAttribute
         var groups: MutableList<GroupDAO> = mutableListOf(),
         @DynamoDBAttribute
         var friends: MutableList<UserDAO> = mutableListOf()

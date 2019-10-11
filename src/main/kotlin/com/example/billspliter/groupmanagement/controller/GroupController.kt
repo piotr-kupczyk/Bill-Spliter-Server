@@ -35,6 +35,6 @@ class GroupController(
             @RequestBody spendRequest: SpendRequest
     ): ResponseEntity<SpendDAO> {
         log.info("PUT request. Adding new spendRequest ")
-        return ResponseEntity.ok(groupService.addSpend(groupId, spendRequest ))
+        return ResponseEntity.ok(groupService.addSpend(groupId, spendRequest))
     }
 }

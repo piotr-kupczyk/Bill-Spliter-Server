@@ -7,5 +7,6 @@ data class SpendRequest(
         val title: String,
         val date: Long,
         val value: Double,
-        val payer: String
+        val payerId: String,
+        val concerns: List<String>
 )
