@@ -1,11 +1,10 @@
 package com.example.billspliter.usermanagement.controller
 
 import com.example.billspliter.usermanagement.UserDAO
-import com.example.billspliter.usermanagement.httpmodel.UserRequest
+import com.example.billspliter.usermanagement.httpmodel.user.CreateUserRequest
 import com.example.billspliter.usermanagement.service.UserService
 import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
-import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.bind.annotation.*
 
 @RequestMapping("/user")
@@ -35,9 +34,9 @@ class UserController(
     }
 
     @PostMapping
-    fun createUser(@RequestBody userRequest: UserRequest): ResponseEntity<UserDAO> {
-        log.info("POST request. Creating user: $userRequest")
-        return ResponseEntity.ok(service.createUser(userRequest))
+    fun createUser(@RequestBody createUserRequest: CreateUserRequest): ResponseEntity<UserDAO> {
+        log.info("POST request. Creating user: $createUserRequest")
+        return ResponseEntity.ok(service.createUser(createUserRequest))
     }
 
     @DeleteMapping

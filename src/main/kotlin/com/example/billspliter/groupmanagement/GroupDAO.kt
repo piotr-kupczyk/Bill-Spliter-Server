@@ -1,11 +1,8 @@
 package com.example.billspliter.groupmanagement
 
 import com.amazonaws.services.dynamodbv2.datamodeling.*
-import com.example.billspliter.usermanagement.Spend
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import org.springframework.data.annotation.CreatedDate
-import java.sql.Date
 import java.sql.Timestamp
 
 @DynamoDBTable(tableName = "groups")

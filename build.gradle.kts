@@ -20,8 +20,16 @@ dependencies {
 	// Spring web
 	implementation(Dependencies.springWeb)
 	implementation(Dependencies.springWebStarter)
+	//Spring security
+	implementation(Dependencies.springSecurityJWT)
+	implementation(Dependencies.springSecurityWeb)
+	implementation(Dependencies.springSecurityConfig)
+	implementation(Dependencies.springSecurityCore)
+	implementation(Dependencies.jjwtApi)
+	implementation(Dependencies.jjwtImpl)
+	implementation(Dependencies.jjwtJackson)
 
-	// Spring data + DynomoDB
+	// Spring data + DynamoDB
 	implementation(Dependencies.springData)
 	implementation(Dependencies.dynamoDB)
 	implementation(Dependencies.sprindDynamoDB)

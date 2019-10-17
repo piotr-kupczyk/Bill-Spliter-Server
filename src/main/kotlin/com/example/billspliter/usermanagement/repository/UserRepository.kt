@@ -8,5 +8,6 @@ import java.util.*
 @EnableScan
 interface UserRepository: CrudRepository<UserDAO, String> {
     override fun findAllById(ids: Iterable<String>): List<UserDAO>
+    fun findByName(name: String): UserDAO?
 }
 
