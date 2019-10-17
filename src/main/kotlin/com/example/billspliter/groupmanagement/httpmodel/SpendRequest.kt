@@ -5,7 +5,6 @@ import java.sql.Timestamp
 
 data class SpendRequest(
         val title: String,
-        val date: Long,
         val value: Double,
         val payerId: String,
         val concerns: List<String>

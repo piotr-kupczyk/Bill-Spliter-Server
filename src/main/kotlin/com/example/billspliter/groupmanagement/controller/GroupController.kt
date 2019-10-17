@@ -29,9 +29,9 @@ class GroupController(
         return ResponseEntity.ok(groupService.createGroup(group))
     }
 
-    @PutMapping
+    @PutMapping("/{groupId}/spend")
     fun addSpend(
-            @RequestParam groupId: String,
+            @PathVariable groupId: String,
             @RequestBody spendRequest: SpendRequest
     ): ResponseEntity<SpendDAO> {
         log.info("PUT request. Adding new spendRequest ")
