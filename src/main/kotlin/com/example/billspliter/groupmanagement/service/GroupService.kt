@@ -10,6 +10,9 @@ import com.example.billspliter.usermanagement.UserDAO
 import com.example.billspliter.usermanagement.service.UserService
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.http.HttpStatus
+import org.springframework.security.core.context.SecurityContext
+import org.springframework.security.core.context.SecurityContextHolder
+import org.springframework.stereotype.Component
 import org.springframework.stereotype.Service
 import org.springframework.web.server.ResponseStatusException
 import java.sql.Timestamp

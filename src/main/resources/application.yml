@@ -1,6 +1,6 @@
-amazon.dynamodb.endpoint: http://localhost:8000/
-aws.access.key.id: dummy
-aws.secret.access.key: dummy
+amazon.dynamodb.endpoint:
+aws.access.key.id:
+aws.secret.access.key:
 
 spring:
   data:

@@ -12,8 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
-import org.springframework.security.crypto.password.PasswordEncoder
-import org.springframework.web.cors.CorsConfiguration
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
@@ -38,11 +36,6 @@ class SecurityConfiguration(
     public override fun configure(auth: AuthenticationManagerBuilder) {
         auth.userDetailsService(userAuthenticationService)
                 .passwordEncoder(passwordEncoder())
-
-//        auth.inMemoryAuthentication()
-//                .withUser("user")
-//                .password(passwordEncoder().encode("password"))
-//                .authorities("ROLE_USER")
     }
     @Bean
     fun passwordEncoder(): BCryptPasswordEncoder {

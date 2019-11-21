@@ -12,5 +12,4 @@ class BillSpliterApplicationTests {
 	@Test
 	fun contextLoads() {
 	}
-
 }

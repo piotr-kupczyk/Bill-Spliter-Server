@@ -2,6 +2,7 @@ package com.example.billspliter.groupmanagement.repository
 
 import com.example.billspliter.groupmanagement.GroupDAO
 import org.socialsignin.spring.data.dynamodb.repository.EnableScan
+import org.socialsignin.spring.data.dynamodb.repository.Query
 import org.springframework.data.repository.CrudRepository
 import java.util.*
 

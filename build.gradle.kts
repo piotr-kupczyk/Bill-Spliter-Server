@@ -1,8 +1,11 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import com.palantir.gradle.docker.DockerExtension
+import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
 	id("org.springframework.boot") version "2.1.8.RELEASE"
 	id("io.spring.dependency-management") version "1.0.8.RELEASE"
+	id("com.palantir.docker") version "0.22.1"
 	kotlin("jvm") version "1.2.71"
 	kotlin("plugin.spring") version "1.2.71"
 }
@@ -47,4 +50,16 @@ tasks.withType<KotlinCompile> {
 		freeCompilerArgs = listOf("-Xjsr305=strict")
 		jvmTarget = "1.8"
 	}
+}
+
+val bootJar = tasks["bootJar"] as BootJar
+
+configure<DockerExtension> {
+	dependsOn(tasks["build"] as Task)
+	name = "bill-splitter"
+	files(bootJar.archiveFile.get())
+	tags("latest")
+	buildArgs(mapOf(
+			"JAR_FILE" to bootJar.archiveFileName.get()
+	))
 }

@@ -1,10 +1,16 @@
-version: '2'
+version: "3.7"
 services:
-  dynamoDB:
-    image: amazon/dynamodb-local
+  web-server:
+    build: .
+    depends_on:
+      - dynamodb
     environment:
+      - AMAZON_DYNAMODB_ENDPOINT=http://dynamodb:8000/
       - AWS_ACCESS_KEY_ID=dummy
       - AWS_SECRET_ACCESS_KEY=dummy
+    image: billsplitter.azurecr.io/bill-splitter:latest
     ports:
-      - 8000:8000
+      - 80:8080
+  dynamodb:
+    image: amazon/dynamodb-local
     command: ["-jar", "DynamoDBLocal.jar", "-sharedDb", "-inMemory"]
